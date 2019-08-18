@@ -27,7 +27,7 @@ class TodoItem extends Component<any, any> {
 					}}
 					className="todo-item__btn"
 				>
-					Delete task
+					Delete task{id}
 				</button>
 			</div>
 		);

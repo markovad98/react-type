@@ -38,14 +38,14 @@ export const reducer = (state: Istate = initialState, action: Iaction): any => {
 					{
 						title: action.payload,
 						status: true,
-						id: state.todoList.length + 1
+						id: state.todoList.length ? Math.max(...state.todoList.map((todo) => todo.id)) + 1 : 1
 					}
 				]),
 				todoListByFilter: state.todoList.concat([
 					{
 						title: action.payload,
 						status: true,
-						id: state.todoList.length + 1
+						id: state.todoList.length ? Math.max(...state.todoList.map((todo) => todo.id)) + 1 : 1
 					}
 				])
 			};
