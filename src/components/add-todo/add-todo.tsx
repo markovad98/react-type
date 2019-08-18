@@ -14,7 +14,7 @@ class AddTodo extends Component<any, any> {
 		this.setState({ inputText: e.target.value });
 	};
 
-	onKeyPress = (e: any) => {
+	addTodoInputFunc = (e: any) => {
 		if (e.key === 'Enter') {
 			this.state.inputText
 				? this.props.addTodo(this.state.inputText) && this.setState({ inputText: '' })
@@ -22,7 +22,14 @@ class AddTodo extends Component<any, any> {
 		}
 	};
 
+	addTodoBtnFunc = (e: any) => {
+		this.state.inputText
+			? this.props.addTodo(this.state.inputText) && this.setState({ inputText: '' })
+			: alert('хiй!');
+	};
+
 	render() {
+		const { darkTheme } = this.props;
 		return (
 			<section className="add-todo">
 				<Input
@@ -31,15 +38,28 @@ class AddTodo extends Component<any, any> {
 					type="text"
 					value={this.state.inputText}
 					onChange={this.onInput}
-					onKeyPress={this.onKeyPress}
+					onKeyPress={this.addTodoInputFunc}
 				/>
+				<button
+					onClick={this.addTodoBtnFunc}
+					style={{
+						background: darkTheme
+							? 'linear-gradient(45deg, #7b47ff, #ff47a9)'
+							: 'linear-gradient(45deg, #1affb3, #0f9bff)'
+					}}
+					className="add-todo-btn"
+				>
+					Add task
+				</button>
 			</section>
 		);
 	}
 }
 
 const mapStateToProps = (state: Istate) => {
-	return state;
+	return {
+		darkTheme: state.darkTheme
+	};
 };
 
 const mapDispatchToProps = {
