@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { reducer } from './reducers';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import thunk from 'redux-thunk';
 
 const store = createStore(reducer);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<HashRouter>
+			<App />
+		</HashRouter>
 	</Provider>,
 	document.getElementById('root')
 );

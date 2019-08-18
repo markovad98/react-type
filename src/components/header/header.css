@@ -1,0 +1,31 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.header__switch-btn {
+	width: 120px;
+	text-align: center;
+	border: none;
+	padding: 8px 16px;
+	color: white;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+.header__search {
+	width: 240px;
+	height: 31px;
+	padding: 5px;
+	border: 1px solid yellowgreen;
+	border-radius: 10px;
+	color: #6b6b6b;
+}
+
+.header__search::-webkit-input-placeholder {
+	color: #6b6b6b;
+}
+.header__search::-moz-placeholder {
+	color: #6b6b6b;
+}

@@ -1,0 +1,25 @@
+.add-todo {
+	margin-top: 30px;
+}
+.add-todo-input {
+	width: 100%;
+	padding: 10px;
+	box-shadow: 3px 3px 8px 2px lightgray;
+	border: none;
+	border-radius: 10px;
+	font-size: 24px;
+	color: #6b6b6b;
+	letter-spacing: 2px;
+}
+
+.add-todo-input::-webkit-input-placeholder {
+	color: #6b6b6b;
+}
+.add-todo-input::-moz-placeholder {
+	color: #6b6b6b;
+}
+
+.add-todo-input:active,
+.add-todo-input:focus {
+	outline: none;
+}

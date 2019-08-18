@@ -1,35 +1,80 @@
-export const initialState: Istate = {
-	todoList: [
-		{
-			title: 'Learn React',
-			status: true,
-			id: 1,
-			date: `Число: ${new Date().getDate()}, час: ${new Date().getHours()}`
-		},
-		{
-			title: 'Learn Redux',
-			status: true,
-			id: 2,
-			date: `Число: ${new Date().getDate()}, час: ${new Date().getHours()}`
-		}
-	]
-};
-
 export interface Istate {
-	todoList: { title: string; status: boolean; id: number; date: string }[] | [];
+	todoList: Itodo[];
+	darkTheme: boolean;
+	searchInput: string;
+	todoListByFilter: Itodo[];
+}
+
+export interface Itodo {
+	title: string;
+	status: boolean;
+	id: number;
 }
 
 export interface Iaction {
-	type: string | null;
-	payload: any | null;
+	type: string;
+	payload?: any;
 }
+
+export const initialState: Istate = {
+	todoList: [],
+	todoListByFilter: [],
+	darkTheme: false,
+	searchInput: ''
+};
 
 export const reducer = (state: Istate = initialState, action: Iaction): any => {
 	switch (action.type) {
 		case 'DELETE_TODO':
 			return {
-				todoList: state.todoList.filter((todo) => todo.id !== action.payload)
+				...state,
+				todoList: state.todoList.filter((todo: Itodo) => todo.id !== action.payload),
+				todoListByFilter: state.todoListByFilter.filter((todo: Itodo) => todo.id !== action.payload)
 			};
+		case 'ADD_TODO':
+			return {
+				...state,
+				todoList: state.todoList.concat([
+					{
+						title: action.payload,
+						status: true,
+						id: state.todoList.length + 1
+					}
+				]),
+				todoListByFilter: state.todoList.concat([
+					{
+						title: action.payload,
+						status: true,
+						id: state.todoList.length + 1
+					}
+				])
+			};
+		case 'SWITCH_THEME':
+			return {
+				...state,
+				darkTheme: !state.darkTheme
+			};
+		case 'CHANGE_SEARCH':
+			return {
+				...state,
+				searchInput: action.payload
+			};
+		case 'FILTER_TODO':
+			state.todoListByFilter = state.todoList;
+			if (state.searchInput === '') {
+				return {
+					...state,
+					todoListByFilter: state.todoList
+				};
+			} else {
+				return {
+					...state,
+					todoListByFilter: state.todoListByFilter.filter(
+						(todo) => todo.title.toLowerCase().indexOf(state.searchInput.toLowerCase()) !== -1
+					)
+				};
+			}
+
 		default:
 			return state;
 	}

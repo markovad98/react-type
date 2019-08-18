@@ -2,38 +2,39 @@ import React, { Component } from 'react';
 import './todo-list.css';
 import TodoItem from '../todo-item';
 import { connect } from 'react-redux';
-import { Istate } from '../../reducers';
-import { deleteTodo } from '../../actions';
-
-export interface ITodo {
-	title: string;
-	status: boolean;
-	id: number;
-	date: string;
-}
+import { Itodo } from '../../reducers';
 
 class TodoList extends Component<any, any> {
 	render() {
-		const { todoList, deleteTodo } = this.props;
+		const { todoListByFilter, darkTheme } = this.props;
 
 		return (
-			<ul>
-				{todoList.map((todo: ITodo) => (
-					<li onClick={() => deleteTodo(todo.id)} key={todo.id}>
-						<TodoItem todo={todo} />
-					</li>
-				))}
+			<ul className="todo-list">
+				{todoListByFilter.length ? (
+					todoListByFilter.map((todo: Itodo) => (
+						<li key={todo.id}>
+							<TodoItem todo={todo} />
+						</li>
+					))
+				) : (
+					<div
+						style={{
+							background: darkTheme
+								? 'linear-gradient(45deg, #7b47ff, #ff47a9)'
+								: 'linear-gradient(45deg, #1affb3, #0f9bff)'
+						}}
+						className="todo-list_empty"
+					>
+						Todo list is empty
+					</div>
+				)}
 			</ul>
 		);
 	}
 }
 
-const mapStateToProps = (state: Istate) => {
-	return { todoList: state.todoList };
+const mapStateToProps = (state: any) => {
+	return { todoListByFilter: state.todoListByFilter, darkTheme: state.darkTheme };
 };
 
-const mapDispatchToProps = {
-	deleteTodo
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(mapStateToProps)(TodoList);

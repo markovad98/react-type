@@ -1,0 +1,23 @@
+.todo-item {
+	display: flex;
+	padding: 15px;
+	border-radius: 10px;
+	background-color: #e0e0e0;
+	margin-top: 15px;
+	justify-content: space-between;
+	transition: 0.5s;
+}
+
+.todo-item__btn {
+	border: none;
+	background-color: #ff3d3d;
+	padding: 8px 16px;
+	color: white;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+.todo-item__btn:hover {
+	background-color: #d10000;
+}

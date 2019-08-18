@@ -1,15 +1,50 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteTodo } from '../../actions';
+import './todo-item.css';
 
-export default class TodoItem extends Component<any, any> {
+class TodoItem extends Component<any, any> {
+	state = {
+		todoItemOpacity: 1,
+		isDeleted: false
+	};
+
+	public transparentItem() {
+		this.setState({ isDeleted: true });
+	}
+
 	render() {
-		const { todo: { title, status, date } } = this.props;
+		const { todo: { title, status, id } } = this.props;
 
 		return (
-			<div>
+			<div style={{ opacity: this.state.isDeleted ? 0 : 1 }} className="todo-item">
 				<span>{title}</span>
-				<span>{status}</span>
-				<span>{date}</span>
+
+				<button
+					onClick={() => {
+						this.props.deleteTodo(id);
+						this.transparentItem();
+					}}
+					className="todo-item__btn"
+				>
+					Delete task
+				</button>
 			</div>
 		);
 	}
 }
+
+const mapStateToProps = (state: any) => {
+	return { todoList: state.todoList };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+	return {
+		deleteTodo: (id: number) =>
+			setTimeout(() => {
+				dispatch(deleteTodo(id));
+			}, 500)
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);
