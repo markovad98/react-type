@@ -34,6 +34,7 @@ export const reducer = (state: Istate = initialState, action: Iaction): any => {
 		case 'ADD_TODO':
 			return {
 				...state,
+				searchInput: '',
 				todoList: state.todoList.concat([
 					{
 						title: action.payload,
