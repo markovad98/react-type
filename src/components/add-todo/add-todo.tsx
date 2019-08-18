@@ -15,7 +15,11 @@ class AddTodo extends Component<any, any> {
 	};
 
 	onKeyPress = (e: any) => {
-		e.key === 'Enter' && this.props.addTodo(this.state.inputText) && this.setState({ inputText: '' });
+		if (e.key === 'Enter') {
+			this.state.inputText
+				? this.props.addTodo(this.state.inputText) && this.setState({ inputText: '' })
+				: alert('хiй!');
+		}
 	};
 
 	render() {

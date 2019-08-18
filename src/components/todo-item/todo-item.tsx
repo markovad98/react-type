@@ -14,7 +14,7 @@ class TodoItem extends Component<any, any> {
 	}
 
 	render() {
-		const { todo: { title, status, id } } = this.props;
+		const { todo: { title, id } } = this.props;
 
 		return (
 			<div style={{ opacity: this.state.isDeleted ? 0 : 1 }} className="todo-item">

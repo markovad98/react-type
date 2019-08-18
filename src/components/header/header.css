@@ -29,3 +29,18 @@
 .header__search::-moz-placeholder {
 	color: #6b6b6b;
 }
+
+@media (max-width: 520px) {
+	.header__search {
+		width: 180px;
+	}
+}
+
+@media (max-width: 390px) {
+	.header__search {
+		width: 140px;
+	}
+	.header__switch-btn {
+		padding: 0px;
+	}
+}

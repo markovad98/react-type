@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { reducer } from './reducers';
-import { HashRouter, Switch, Route } from 'react-router-dom';
-import thunk from 'redux-thunk';
+import { HashRouter} from 'react-router-dom';
 
 const store = createStore(reducer);
 
