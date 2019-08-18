@@ -46,7 +46,7 @@ const mapStateToProps = (state: Istate) => {
 	return {
 		darkTheme: state.darkTheme,
 		searchInput: state.searchInput,
-		todoList: state.todoListByFilter
+		todoList: state.todoList
 	};
 };
 

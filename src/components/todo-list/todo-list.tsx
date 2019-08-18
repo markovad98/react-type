@@ -6,7 +6,7 @@ import { Itodo } from '../../reducers';
 
 class TodoList extends Component<any, any> {
 	render() {
-		const { todoListByFilter, darkTheme } = this.props;
+		const { todoListByFilter, darkTheme, todoList } = this.props;
 
 		return (
 			<ul className="todo-list">
@@ -25,7 +25,7 @@ class TodoList extends Component<any, any> {
 						}}
 						className="todo-list_empty"
 					>
-						Todo list is empty
+						{todoList.length && todoListByFilter ? 'Nothing found' : 'Todo list is empty'}
 					</div>
 				)}
 			</ul>
@@ -34,7 +34,7 @@ class TodoList extends Component<any, any> {
 }
 
 const mapStateToProps = (state: any) => {
-	return { todoListByFilter: state.todoListByFilter, darkTheme: state.darkTheme };
+	return { todoListByFilter: state.todoListByFilter, darkTheme: state.darkTheme, todoList: state.todoList };
 };
 
 export default connect(mapStateToProps)(TodoList);
