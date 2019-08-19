@@ -6,7 +6,6 @@
 .add-todo-input {
 	width: 100%;
 	padding: 10px;
-	box-shadow: 3px 3px 8px 2px lightgray;
 	border: none;
 	border-radius: 10px;
 	font-size: 24px;
@@ -43,7 +42,6 @@
 .add-todo-error {
 	position: absolute;
 	left: 10px;
-	color: tomato;
 	font-weight: 700;
 	transition: 0.1s;
 }

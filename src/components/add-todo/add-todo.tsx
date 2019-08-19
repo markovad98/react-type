@@ -33,6 +33,7 @@ class AddTodo extends Component<any, any> {
 		return (
 			<section className="add-todo">
 				<input
+					style={{ boxShadow: darkTheme ? ' 0px 0px 8px 2px #ff99ff' : ' 3px 3px 8px 2px lightgray' }}
 					className="add-todo-input"
 					placeholder="Title of todo"
 					type="text"
@@ -54,7 +55,8 @@ class AddTodo extends Component<any, any> {
 				<span
 					style={{
 						zIndex: this.state.hasAddTodoError ? 1 : -1,
-						top: this.state.hasAddTodoError ? '50px' : '25px'
+						top: this.state.hasAddTodoError ? '50px' : '25px',
+						color: darkTheme ? '#d86bff' : 'tomato'
 					}}
 					className="add-todo-error"
 				>
