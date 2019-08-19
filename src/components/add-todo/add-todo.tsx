@@ -2,37 +2,37 @@ import React, { Component } from 'react';
 import './add-todo.css';
 import { connect } from 'react-redux';
 import { addTodo } from '../../actions';
-import { Input } from 'antd';
 import { Istate } from '../../reducers';
 
 class AddTodo extends Component<any, any> {
 	state = {
-		inputText: ''
+		inputText: '',
+		hasAddTodoError: false
 	};
 
 	onInput = (e: any) => {
-		this.setState({ inputText: e.target.value });
+		this.setState({ inputText: e.target.value, hasAddTodoError: false });
 	};
 
 	addTodoInputFunc = (e: any) => {
 		if (e.key === 'Enter') {
 			this.state.inputText
 				? this.props.addTodo(this.state.inputText) && this.setState({ inputText: '' })
-				: alert('хiй!');
+				: this.setState({ hasAddTodoError: true });
 		}
 	};
 
 	addTodoBtnFunc = (e: any) => {
 		this.state.inputText
 			? this.props.addTodo(this.state.inputText) && this.setState({ inputText: '' })
-			: alert('хiй!');
+			: this.setState({ hasAddTodoError: true });
 	};
 
 	render() {
 		const { darkTheme } = this.props;
 		return (
 			<section className="add-todo">
-				<Input
+				<input
 					className="add-todo-input"
 					placeholder="Title of todo"
 					type="text"
@@ -51,6 +51,15 @@ class AddTodo extends Component<any, any> {
 				>
 					Add task
 				</button>
+				<span
+					style={{
+						zIndex: this.state.hasAddTodoError ? 1 : -1,
+						top: this.state.hasAddTodoError ? '50px' : '25px'
+					}}
+					className="add-todo-error"
+				>
+					You cannot enter an empty field
+				</span>
 			</section>
 		);
 	}

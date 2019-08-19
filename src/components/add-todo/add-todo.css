@@ -1,6 +1,7 @@
 .add-todo {
 	margin-top: 30px;
 	display: flex;
+	position: relative;
 }
 .add-todo-input {
 	width: 100%;
@@ -12,6 +13,8 @@
 	color: #6b6b6b;
 	letter-spacing: 2px;
 	margin-right: 30px;
+	position: relative;
+	z-index: 2;
 }
 
 .add-todo-input::-webkit-input-placeholder {
@@ -35,4 +38,12 @@
 	border-radius: 10px;
 	cursor: pointer;
 	transition: 0.5s;
+}
+
+.add-todo-error {
+	position: absolute;
+	left: 10px;
+	color: tomato;
+	font-weight: 700;
+	transition: 0.1s;
 }
